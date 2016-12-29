@@ -6,10 +6,12 @@ import com.oscarmalagon.test.SimpleClass;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.io.File;
 import java.text.ParseException;
 
 
-@SpringBootApplication public class ServicesgeneratorApplication {
+@SpringBootApplication
+public class ServicesgeneratorApplication {
 
     public static void main(String[] args) throws ParseException {
         SpringApplication.run(ServicesgeneratorApplication.class, args);
@@ -23,4 +25,5 @@ import java.text.ParseException;
         serviceGenerator.generateServiceImpl(inputs, authorName);
 
     }
+
 }
