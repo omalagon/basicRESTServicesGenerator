@@ -1,0 +1,13 @@
+package $package_name ;
+
+import $entity_path;
+import org.mutualser.core.repository.EntityRepository;
+import org.springframework.stereotype.Repository;
+
+/**
+ * @author PSL.SA - $author_name
+ * @since $date
+ */
+@Repository
+public interface $entity_name_repository extends EntityRepository< $entity_name > {
+}

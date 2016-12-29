@@ -1,0 +1,22 @@
+package $package_name;
+
+import java.util.List;
+import java.util.Optional;
+
+import $entity_path;
+
+/**
+* @author PSL.SA -  $author_name
+* @since $date
+*/
+public interface $entity_name_service {
+
+    Optional<$entity_name> findById(String id);
+
+    List<$entity_name> findAll();
+
+    Optional<$entity_name> createOrUpdate($entity_name $attribute_name);
+
+    Optional<$entity_name> delete($entity_name $attribute_name);
+
+}

@@ -29,6 +29,7 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+	compile group: 'org.apache.velocity', name: 'velocity', version: '1.7'
 	runtime('org.springframework.boot:spring-boot-devtools')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

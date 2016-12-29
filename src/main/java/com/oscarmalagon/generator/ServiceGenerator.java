@@ -1,7 +1,10 @@
 package com.oscarmalagon.generator;
 
-import com.oscarmalagon.templates.repositoryInterfaceTemplate;
-import com.oscarmalagon.templates.serviceInterfaceTemplate;
+import com.oscarmalagon.dao.ClassMetadata;
+import com.oscarmalagon.dao.ObjectData;
+import com.oscarmalagon.templates.ImplServiceTemplate;
+import com.oscarmalagon.templates.RepositoryInterfaceTemplate;
+import com.oscarmalagon.templates.ServiceInterfaceTemplate;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
@@ -33,8 +36,18 @@ public class ServiceGenerator {
             repositoryFile.mkdir();
 
             String repositoryName = input.getSimpleName() + "Repository";
-            String tmp = repositoryInterfaceTemplate
-                .generateTemplate(PACKAGE_NAME, authorName, input.getName(), input.getSimpleName());
+
+            ClassMetadata classMetadata = ClassMetadata.builder()
+                .packageName(PACKAGE_NAME)
+                .author(authorName)
+                .build();
+
+            ObjectData entityData = ObjectData.builder()
+                .name(input.getSimpleName())
+                .path(input.getName())
+                .build();
+
+            String tmp = RepositoryInterfaceTemplate.generateTemplate(classMetadata, entityData);
             List<String> code = Arrays.asList(tmp);
 
             try {
@@ -57,9 +70,20 @@ public class ServiceGenerator {
         for(Class input: inputs) {
             File serviceFile = new File(serviceFolder.getAbsolutePath() + "/" + input.getSimpleName().toLowerCase());
             serviceFile.mkdir();
+
             String serviceName = input.getSimpleName() + "Service";
-            String tmp = serviceInterfaceTemplate
-                .generateTemplate(PACKAGE_NAME, authorName, input.getName(), input.getSimpleName());
+
+            ClassMetadata classMetadata = ClassMetadata.builder()
+                .packageName(PACKAGE_NAME)
+                .author(authorName)
+                .build();
+
+            ObjectData entityData = ObjectData.builder()
+                .name(input.getSimpleName())
+                .path(input.getName())
+                .build();
+
+            String tmp = ServiceInterfaceTemplate.generateTemplate(classMetadata, entityData);
             List<String> code = Arrays.asList(tmp);
 
             try {
@@ -83,9 +107,33 @@ public class ServiceGenerator {
         for(Class input: inputs) {
             File serviceImplFolder = new File(servicesFolder.getAbsolutePath() + "/" +input.getSimpleName().toLowerCase() + "/impl");
             serviceImplFolder.mkdirs();
+
             String serviceInterfaceName = input.getSimpleName() +"Service";
             String className = "Default" + serviceInterfaceName;
-            String tmp = serviceInterfaceTemplate.generateTemplate(PACKAGE_NAME, authorName, input.getName(), input.getSimpleName());
+
+            ClassMetadata classMetadata = ClassMetadata.builder()
+                .packageName(PACKAGE_NAME)
+                .author(authorName)
+                .build();
+
+            ObjectData entityData = ObjectData.builder()
+                .name(input.getSimpleName())
+                .path(input.getName())
+                .build();
+
+            ObjectData serviceData = ObjectData.builder()
+                .name(input.getSimpleName())
+                .path(input.getName())
+                .build();
+
+            ObjectData repositoryData = ObjectData.builder()
+                .name(input.getSimpleName())
+                .path(input.getName())
+                .build();
+
+
+            String tmp = ImplServiceTemplate
+                .generateTemplate(classMetadata, entityData, serviceData, repositoryData);
             List<String> code = Arrays.asList(tmp);
 
             try {
