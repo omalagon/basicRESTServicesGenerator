@@ -39,8 +39,6 @@ public class ImplServiceTemplate {
         velocityContext.put("entity_service_path", serviceData.getPath());
         velocityContext.put("author_name", classMetadata.getAuthor());
         velocityContext.put("date", Utils.getDate(new GregorianCalendar()));
-        velocityContext.put("service_name", serviceData.getName());
-        velocityContext.put("repository_name", repositoryData.getName());
         velocityContext.put("attribute_name", entityData.getName().toLowerCase());
         velocityContext.put("entity_name", entityData.getName());
 

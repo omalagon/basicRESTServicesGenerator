@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * @since $date
  */
 @Repository
-public interface $entity_name_repository extends EntityRepository< $entity_name > {
+public interface ${entity_name}Repository extends EntityRepository<$entity_name> {
 }

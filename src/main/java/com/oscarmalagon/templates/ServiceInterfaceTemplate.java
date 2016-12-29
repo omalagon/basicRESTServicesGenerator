@@ -40,7 +40,6 @@ public class ServiceInterfaceTemplate {
         velocityContext.put("author_name", classMetadata.getAuthor());
         velocityContext.put("date", Utils.getDate(new GregorianCalendar()));
         velocityContext.put("entity_name", entityData.getName());
-        velocityContext.put("entity_name_service", entityData.getName() + "Service");
         velocityContext.put("attribute_name", entityData.getName().toLowerCase());
 
         StringWriter stringWriter = new StringWriter();

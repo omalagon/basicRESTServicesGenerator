@@ -19,12 +19,12 @@ import org.springframework.transaction.annotation.Transactional;
 * @since $date
 */
 @Service
-public class Default${service_name}Service implements ${service_name}Service {
+public class Default${entity_name}Service implements ${entity_name}Service {
 
-    private final $repository_name repository;
+    private final ${entity_name}Repository repository;
 
     @Autowired
-    public Default${service_name}Service($repository_name repository) {
+    public Default${entity_name}Service(${entity_name}Repository repository) {
         this.repository = repository;
     }
 

@@ -9,7 +9,7 @@ import $entity_path;
 * @author PSL.SA -  $author_name
 * @since $date
 */
-public interface $entity_name_service {
+public interface ${entity_name}Service {
 
     Optional<$entity_name> findById(String id);
 

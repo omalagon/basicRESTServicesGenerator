@@ -37,7 +37,6 @@ public class RepositoryInterfaceTemplate {
         velocityContext.put("package_name", "<edit>");
         velocityContext.put("entity_path", entityData.getPath());
         velocityContext.put("author_name", classMetadata.getAuthor());
-        velocityContext.put("entity_name_repository", entityData.getName() + "Repository" );
         velocityContext.put("entity_name", entityData.getName());
         velocityContext.put("date", Utils.getDate(new GregorianCalendar()));
 

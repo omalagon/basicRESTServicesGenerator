@@ -24,7 +24,7 @@ import java.util.List;
 
     private static final String PACKAGE_NAME = "<edit>";
     private static final String JAVA_EXTENSION = ".java";
-    private static final String FOLDER_RELATIVE_PATH = "../Project1";
+    private static final String FOLDER_RELATIVE_PATH = "../Project6";
 
     public void generateRepository(Class[] inputs, String authorName) throws ParseException {
 
@@ -109,6 +109,9 @@ import java.util.List;
         servicesFolder.mkdirs();
 
         for (Class input : inputs) {
+
+            File repositoryFolder = new File(FOLDER_RELATIVE_PATH + "/repositories/" + input.getSimpleName() + "Repository.java");
+
             File serviceImplFolder = new File(
                 servicesFolder.getAbsolutePath() + "/" + input.getSimpleName().toLowerCase()
                     + "/impl");
@@ -131,14 +134,12 @@ import java.util.List;
 
             ObjectData serviceData =
                 ObjectData.builder()
-                    .name(input.getSimpleName())
-                    .path(input.getName())
+                    .path("Not searched yet")
                     .build();
 
             ObjectData repositoryData =
                 ObjectData.builder()
-                    .name(input.getSimpleName())
-                    .path(input.getName())
+                    .path("Not searched yet")
                     .build();
 
 
