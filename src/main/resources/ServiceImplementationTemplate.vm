@@ -1,0 +1,83 @@
+package $package_name;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.mutualser.core.commons.exception.CommonRuntimeException;
+import $entity_path;
+import $entity_repository_path;
+import $entity_service_path;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+* @author PSL.SA - $author_name
+* @since $date
+*/
+@Service
+public class Default${service_name}Service implements ${service_name}Service {
+
+    private final $repository_name repository;
+
+    @Autowired
+    public Default${service_name}Service($repository_name repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<$entity_name> findById(String id) {
+        checkNotNull(id, "The Id is a required argument!");
+
+        try {
+            $entity_name $attribute_name = repository.findOne(id);
+
+            return Optional.ofNullable($attribute_name);
+        } catch (Exception ex) {
+            throw new CommonRuntimeException("Error finding $entity_name by Id [" + id + "]!", ex);
+        }
+    }
+
+    @Override
+    public List<$entity_name> findAll() {
+        try {
+            return repository.findAll();
+        } catch (Exception ex) {
+            throw new CommonRuntimeException("Error finding all ${entity_name}s!", ex);
+        }
+    }
+
+    @Override
+    public Optional<$entity_name> createOrUpdate($entity_name $attribute_name){
+        checkNotNull($attribute_name, "The $attribute_name is a required argument!");
+
+        Optional<$entity_name> ${attribute_name}Found = findById(${attribute_name}.getId());
+        if(${attribute_name}Found.isPresent()){
+            throw new CommonRunTimeException("Update not implemented yet");
+        }else{
+
+            $entity_name ${entity_name}Saved = repository.saveAndFlush($attribute_name);
+
+            return Optional.ofNullable(${entity_name}Saved);
+        }
+    }
+
+    @Override
+    Optional<$entity_name> delete($entity_name $attribute_name){
+        checkNotNull($attribute_name, "The $attribute_name is a required argument!");
+
+        Optional<$entity_name> ${attribute_name}Deleted = findById(${attribute_name}.getId());
+        if(${attribute_name}Deleted.isPresent()){
+            repository.delete(${attribute_name}Deleted.get());
+
+            return ${attribute_name}Deleted;
+        }else{
+            throw new CommonRunTimeException("Unable to delete ${attribute_name}");
+        }
+    }
+
+}

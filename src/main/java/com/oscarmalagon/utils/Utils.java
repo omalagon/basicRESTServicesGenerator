@@ -13,6 +13,7 @@ import java.util.Optional;
  */
 public class Utils {
 
+    private Utils(){}
 
     public static  String getDate(GregorianCalendar date) throws ParseException {
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
@@ -23,14 +24,8 @@ public class Utils {
 
 
     public static Optional<File> findFileInFolder(File folder, String prefix) {
-        File[] matchingFiles = folder.listFiles(new FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return name.startsWith(prefix);
-            }
-        });
-        for (File f: matchingFiles) {
-            System.out.println(f.getAbsolutePath());
-        }
+        File[] matchingFiles = folder.listFiles((dir, name) -> name.startsWith(prefix));
+
         return Optional.ofNullable(matchingFiles[0]);
     }
 }

@@ -9,7 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.text.ParseException;
 
 
-@SpringBootApplication public class ServicesgeneratorApplication {
+@SpringBootApplication
+public class ServicesgeneratorApplication {
 
     public static void main(String[] args) throws ParseException {
         SpringApplication.run(ServicesgeneratorApplication.class, args);
@@ -23,4 +24,5 @@ import java.text.ParseException;
         serviceGenerator.generateServiceImpl(inputs, authorName);
 
     }
+
 }
